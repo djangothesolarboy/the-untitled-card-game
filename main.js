@@ -5,6 +5,7 @@ let frame_time=0; /* The difference between the current and last frame of render
 let acc_time=0; /* The sum of the frame times. We use this to determine when to run the next update. */
 let elapsed_time=0; /* The total time passed in ms since the engine has started. */
 let game_state=0; /* Hold the current state of the game. */
+let window_clear_color="#000";
 
 /* Setup / Initialize game / engine vars. */
 onload=()=>
@@ -51,8 +52,15 @@ window_resize=()=>
 	context.canvas.height=window.innerHeight;
 }
 
+window_clear=()=>
+{
+	context.fillStyle=window_clear_color;
+	context.fillRect(0,0,context.canvas.width,context.canvas.height);
+}
+
 /* For Animations / Rendering */
 window_draw=()=>
 {
 	window_resize();
+	window_clear();
 }
