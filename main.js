@@ -45,7 +45,14 @@ phys_update=()=>
 {
 }
 
+window_resize=()=>
+{
+	context.canvas.width=window.innerWidth;
+	context.canvas.height=window.innerHeight;
+}
+
 /* For Animations / Rendering */
 window_draw=()=>
 {
+	window_resize();
 }
