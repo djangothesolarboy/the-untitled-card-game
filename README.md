@@ -1,6 +1,9 @@
 # the-untitled-card-game
 > an untitled multiplayer card game.
 ---
+## gameloop:
+![](gameloop.svg)
+
 ## tools & technologies used:
 - html
 - javascript
