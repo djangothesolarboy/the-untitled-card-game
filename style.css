@@ -1,0 +1,9 @@
+*
+{
+	margin:0;
+	padding:0;
+	/* border:0; */
+	border:1px dashed red;
+	outline:0;
+	box-sizing:border-box;
+}
