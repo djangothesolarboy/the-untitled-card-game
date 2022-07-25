@@ -5,22 +5,53 @@ let frame_time=0; /* The difference between the current and last frame of render
 let acc_time=0; /* The sum of the frame times. We use this to determine when to run the next update. */
 let elapsed_time=0; /* The total time passed in ms since the engine has started. */
 let game_state=0; /* Hold the current state of the game. */
-let window_clear_color="#000";
+let game_state_fn; /*  */
+let window_clear_color="#000"; 
 
-const GAME_SPLASH=0;
-const GAME_MENU=1;
-const GAME_LOADING=2;
-const GAME_PLAYING=3;
-const GAME_OVER=4;
-const game_state_functions=[];
+const game_states=
+[	
+	[],/* Physics States */
+	[],/* Render States */
+];
 
 /* Setup / Initialize game / engine vars. */
 onload=()=>
 {
 	let canvas=document.getElementById("canvas");
 	context=canvas.getContext("2d");
+	/* game_register_states(); */
 	/* Starts the game loop! */
 	game_run();
+}
+
+/* Registers a state fn into the 2d game_states array */
+game_register_state=(isrender,fn)=>game_states[(isrender*1)].push(fn);
+
+/* TODO: Outsource this fn to the developer ( Call this in onload and expect it to exist. ) */
+
+game_splash=()=>
+{
+
+}
+
+game_menu_load=()=>
+{
+
+}
+
+game_load=()=>
+{
+
+}
+
+game_play=()=>
+{
+
+}
+
+game_over=()=>
+{
+
 }
 
 /* Main game loop, calls recursively */
@@ -48,11 +79,6 @@ game_run=(new_time=0)=>
 	requestAnimationFrame(game_run);
 }
 
-game_state_switched=()=>
-{
-	game_state_functions[game_state]();	
-}
-
 /* For Physics / Simulations */
 phys_update=()=>
 {
@@ -78,4 +104,5 @@ window_draw=()=>
 {
 	window_resize();
 	window_clear();
+	/* game_state_fn(); */
 }
