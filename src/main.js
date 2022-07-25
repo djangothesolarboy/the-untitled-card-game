@@ -7,6 +7,13 @@ let elapsed_time=0; /* The total time passed in ms since the engine has started.
 let game_state=0; /* Hold the current state of the game. */
 let window_clear_color="#000";
 
+const GAME_SPLASH=0;
+const GAME_MENU=1;
+const GAME_LOADING=2;
+const GAME_PLAYING=3;
+const GAME_OVER=4;
+const game_state_functions=[];
+
 /* Setup / Initialize game / engine vars. */
 onload=()=>
 {
@@ -41,17 +48,25 @@ game_run=(new_time=0)=>
 	requestAnimationFrame(game_run);
 }
 
+game_state_switched=()=>
+{
+	game_state_functions[game_state]();	
+}
+
 /* For Physics / Simulations */
 phys_update=()=>
 {
 }
 
+/* Ensure that the canvas' width matches the browser width. */
+/* Called every frame. */
 window_resize=()=>
 {
 	context.canvas.width=window.innerWidth;
 	context.canvas.height=window.innerHeight;
 }
 
+/* Ensures the previous frame is cleared before attempting to draw to it. */
 window_clear=()=>
 {
 	context.fillStyle=window_clear_color;
