@@ -18,17 +18,3 @@ void game_run();
 ## Output
 
 ---
-
-```js
-void game_run();
-```
-
-## Description
-
-## Args
-
-## Return
-
-## Example
-
-## Output
