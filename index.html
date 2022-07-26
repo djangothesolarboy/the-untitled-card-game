@@ -5,10 +5,22 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>the untitled card game</title>
-	<link rel="stylesheet" href="../res/css/style.css">
+	<link rel="stylesheet" href="./res/css/style.css">
 </head>
 <body>
 	<canvas id="canvas"></canvas>
-	<script src="./src/main.js"></script>
+	<!-- Libs -->
+	<script src="./lib/assert.js"></script>
+	<script src="./lib/game_event.js"></script>
+	<script src="./lib/time.js"></script>
+	<script src="./lib/state.js"></script>
+	<script src="./lib/phys.js"></script>
+	<script src="./lib/gfx.js"></script>
+	<!-- Game Src -->
+	<script src="./src/states/state_splash.js"></script>
+	<script src="./src/states/state_pause.js"></script>
+	<script src="./src/states/state_menu.js"></script>
+	<script src="./src/state.js"></script>
+	<script src="./src/game.js"></script>
 </body>
 </html>
