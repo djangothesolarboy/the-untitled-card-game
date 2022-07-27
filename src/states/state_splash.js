@@ -1,35 +1,31 @@
-/*
-	Note:
-
-	Set state to splash again if you want multiple different promos.
-	Put logos / brands in an array of strings, use an index to select the logo.
-	When you run out of indices, set state to menu.
-*/
-
 state_splash=
 {
-	max_time:5000,
 	current:0,
 	elapsed:0,
-
-	logo:undefined,
 	alpha:0,
-	text:"FlareWare",
-
+	img:undefined,
+	snd:undefined,
 	screen_index:0,
-	screens:
-	[
-		{text:"FlareWare",img:""},
-		{text:"FlareWare",img:""},
-		{text:"FlareWare",img:""},
-		{text:"FlareWare",img:""},
-	],
+	screens:screens,
 
 	init:()=>
 	{
+		if(state_splash.screen_index>=state_splash.screens.length)
+		{
+			// state_set("menu");
+			state_splash.screen_index=0;
+			// return;
+		}
 		state_splash.current=time.current;
-		state_splash.logo=new Image();
-		state_splash.logo.src="./res/img/logo.jpg";
+		state_splash.elapsed=0;
+		state_splash.alpha=0;
+		let screen=state_splash.screens[state_splash.screen_index];
+		if(state_splash.snd) state_splash.snd.pause();
+		state_splash.snd=new Audio(screen.snd);
+		state_splash.snd.currentTime=0;
+		state_splash.snd.play();
+		state_splash.img=new Image();
+		state_splash.img.src=screen.img;
 	},
 
 	deinit:()=>
@@ -39,21 +35,23 @@ state_splash=
 
 	update:()=>
 	{
+		let screen=state_splash.screens[state_splash.screen_index];
 		/* Call deinit after X seconds to transition to menu. */
 		let elapsed=time.current-state_splash.current;
-		let alpha=elapsed/state_splash.max_time;
+		let alpha=elapsed/screen.duration;
 		
 		if(alpha>0.5)
 		{
-			state_splash.alpha=-(((elapsed-state_splash.max_time)/state_splash.max_time)*2);
+			state_splash.alpha=-(((elapsed-screen.duration)/screen.duration)*2);
 		}
 		else
 		{
 			state_splash.alpha=(alpha*2);
 		}
-
-		if(elapsed>=state_splash.max_time)
+		
+		if(elapsed>=screen.duration)
 		{
+			state_splash.screen_index++;
 			state_set("splash");
 		}
 	},
@@ -61,24 +59,25 @@ state_splash=
 	draw:()=>
 	{
 		gfx.context.globalAlpha=state_splash.alpha;
+		let screen=state_splash.screens[state_splash.screen_index];		
 
 		let sw=gfx.context.canvas.width;
 		let sh=gfx.context.canvas.height;
-		let lw=state_splash.logo.width;
-		let lh=state_splash.logo.height;
+		let lw=state_splash.img.width/2;
+		let lh=state_splash.img.height/2;
 		let lx=(sw/2)-(lw/2);
 		let ly=(sh/2)-(lh/2);
 
-		gfx.context.drawImage(state_splash.logo,lx,ly);
+		gfx.context.drawImage(state_splash.img,lx,ly,lw,lh);
 
-		let txtw=gfx.context.measureText(state_splash.text).width;
+		let txtw=gfx.context.measureText(screen.text).width;
 		gfx.context.textAlign="left";
 		gfx.context.fillStyle="#fff";
-		gfx.context.font="1rem roboto";
+		gfx.context.font="1rem roboto bold";
 
 		x=(sw/2)-(txtw);
 		y=sh-32;
 
-		gfx.context.fillText(state_splash.text,x,y);
+		gfx.context.fillText(screen.text,x,y);
 	},
 };
