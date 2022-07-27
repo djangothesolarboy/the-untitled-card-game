@@ -11,9 +11,19 @@ state_splash=
 	max_time:5000,
 	current:0,
 	elapsed:0,
+
 	logo:undefined,
 	alpha:0,
-	text:"Baby Shit Games",
+	text:"FlareWare",
+
+	screen_index:0,
+	screens:
+	[
+		{text:"FlareWare",img:""},
+		{text:"FlareWare",img:""},
+		{text:"FlareWare",img:""},
+		{text:"FlareWare",img:""},
+	],
 
 	init:()=>
 	{
