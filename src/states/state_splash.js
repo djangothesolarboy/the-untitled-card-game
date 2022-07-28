@@ -20,9 +20,9 @@ state_splash=
 		if(state_splash.snd) state_splash.snd.pause();
 		if(state_splash.screen_index>=state_splash.screens.length)
 		{
-			state_set("menu");
-			// state_splash.screen_index=0;
-			return;
+			// state_set("menu");
+			state_splash.screen_index=0;
+			// return;
 		}
 		state_splash.current=time.current;
 		state_splash.elapsed=0;
