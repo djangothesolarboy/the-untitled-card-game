@@ -3,8 +3,8 @@ screens=
 	{
 		text:"Dynalabs",
 		img:"./res/img/dl.png",
-		snd:"./res/snd/dl.mp3",
-		duration:5045
+		snd:"./res/snd/dl2.mp3",
+		duration:6545
 	},
 
 	{

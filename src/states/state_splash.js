@@ -8,8 +8,15 @@ state_splash=
 	screen_index:0,
 	screens:screens,
 
+	skip:()=>
+	{
+		state_splash.screen_index++;
+		state_set("splash");		
+	},
+
 	init:()=>
 	{
+		document.addEventListener("click",state_splash.skip);
 		if(state_splash.screen_index>=state_splash.screens.length)
 		{
 			// state_set("menu");

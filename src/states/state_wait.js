@@ -1,16 +1,19 @@
+let add_event=document.addEventListener;
+let remove_event=document.removeEventListener;
+
 state_wait=
 {
 	text:"Click to continue",
 
 	onclick:()=>
 	{
-		document.removeEventListener("click",state_wait.onclick);
+		remove_event("click",state_wait.onclick);
 		state_set("splash");
 	},
 
 	init:()=>
 	{
-		document.addEventListener("click",state_wait.onclick);
+		add_event("click",state_wait.onclick);
 	},
 
 	deinit:()=>
