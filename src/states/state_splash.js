@@ -17,17 +17,17 @@ state_splash=
 	init:()=>
 	{
 		document.addEventListener("click",state_splash.skip);
+		if(state_splash.snd) state_splash.snd.pause();
 		if(state_splash.screen_index>=state_splash.screens.length)
 		{
-			// state_set("menu");
-			state_splash.screen_index=0;
-			// return;
+			state_set("menu");
+			// state_splash.screen_index=0;
+			return;
 		}
 		state_splash.current=time.current;
 		state_splash.elapsed=0;
 		state_splash.alpha=0;
 		let screen=state_splash.screens[state_splash.screen_index];
-		if(state_splash.snd) state_splash.snd.pause();
 		state_splash.snd=new Audio(screen.snd);
 		state_splash.snd.currentTime=0;
 		state_splash.snd.play();

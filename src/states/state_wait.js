@@ -32,11 +32,11 @@ state_wait=
 		let sh=gfx.context.canvas.height;
 
 		let txtw=gfx.context.measureText(state_wait.text).width;
-		gfx.context.textAlign="left";
+		gfx.context.textAlign="center";
 		gfx.context.fillStyle="#fff";
 		gfx.context.font="32px roboto bold";
 
-		x=(sw/2)-(txtw);
+		x=(sw/2);
 		y=(sh/2)-(32);
 
 		gfx.context.fillText(state_wait.text,x,y);
